@@ -1,7 +1,9 @@
 package org.eme.petrestfulapp.controllers;
 
 
+import org.eme.petrestfulapp.exception.EntityFoundException;
 import org.eme.petrestfulapp.model.Clinic;
+import org.eme.petrestfulapp.model.Doctor;
 import org.eme.petrestfulapp.model.Owner;
 import org.eme.petrestfulapp.service.ClinicService;
 import org.eme.petrestfulapp.service.OwnerService;
@@ -28,7 +30,10 @@ public class OwnerController {
 
     @PostMapping
     public Owner create(@Valid @RequestBody Owner owner){
-
+        Owner foundedOwner = ownerService.findByName(owner.getName());
+        if(foundedOwner !=null &&foundedOwner.getId()>0){
+            throw new EntityFoundException("Doctor with name :" +owner.getName() + " is already existed");
+        }
         return ownerService.save(owner);
     }
 

@@ -14,4 +14,5 @@ public interface OwnerService {
 
     void delete(Long id);
 
+    Owner findByName(String name);
 }

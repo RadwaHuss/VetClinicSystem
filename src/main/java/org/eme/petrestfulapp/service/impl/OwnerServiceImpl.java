@@ -37,4 +37,9 @@ public class OwnerServiceImpl implements OwnerService {
         }
     }
 
+    @Override
+    public Owner findByName(String name) {
+        return ownerRepository.findByName(name);
+    }
+
 }
