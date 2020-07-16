@@ -32,7 +32,7 @@ public class OwnerController {
     public Owner create(@Valid @RequestBody Owner owner){
         Owner foundedOwner = ownerService.findByName(owner.getName());
         if(foundedOwner !=null &&foundedOwner.getId()>0){
-            throw new EntityFoundException("Doctor with name :" +owner.getName() + " is already existed");
+            throw new EntityFoundException("Owner with name :" +owner.getName() + " is already existed");
         }
         return ownerService.save(owner);
     }
